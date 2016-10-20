@@ -4,6 +4,4 @@
 
 #### Test plan:
 
-#### Suggested reviewers: @cezarneaga, @...
-
-@gov-ithub/socent
+#### Suggested reviewers: @gov-ithub/socent, @...
