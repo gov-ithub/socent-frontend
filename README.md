@@ -26,7 +26,6 @@ Posibil să se schimbe în viitorul apropiat
 
 ## Instalare
 ```
-npm install -g create-react-app
 git clone https://github.com/gov-ithub/socent-frontend.git
 cd socent-frontend
 npm install
