@@ -1,25 +1,39 @@
-import React, { PropTypes as T, Component } from 'react'
+// @flow
+import React, { PropTypes as T, Component, Element } from 'react'
 import { IndexLink } from 'react-router'
 import { Navbar, Nav, NavItem, Grid, Row, Col } from 'react-bootstrap'
 import { StickyContainer, Sticky } from 'react-sticky'
 import AuthService from './utils/AuthService'
+import type { UserProfile } from './utils/AuthService'
 import './components/Navi/navi.css'
 import './App.css'
 import Img from './components/Img'
 import Footer from './components/Footer'
+
+type Props = {
+  auth: AuthService,
+  children?: Element<any>,
+  className?: string
+}
+
+type State = {
+  profile: UserProfile
+}
+
 class App extends Component {
   static contextTypes = {
     router: T.object
   }
+  props: Props;
+  state: State;
 
   static propTypes = {
     auth: T.instanceOf(AuthService)
   }
 
-  constructor(props, context) {
+  constructor(props: Props, context: any) {
     super(props, context);
     this.state = {
-      isLoading: true,
       profile: this.props.auth.getProfile()
     }
     this.props.auth.on('profile_updated', (newProfile) => {
@@ -32,7 +46,7 @@ class App extends Component {
     this.setState({profile: {}})
   }
 
-  render() {
+  render(): Element<any> {
     const { profile } = this.state;
 
     let children = null;

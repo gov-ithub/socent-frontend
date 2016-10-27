@@ -1,3 +1,4 @@
+// @flow
 import React, { PropTypes as T } from 'react';
 import App from '../../App';
 
