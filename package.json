@@ -2,11 +2,13 @@
   "name": "socent",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001/",
   "devDependencies": {
     "react-scripts": "0.6.1"
   },
   "dependencies": {
     "auth0-lock": "^10.4.0",
+    "axios": "^0.15.2",
     "belle": "^2.0.9",
     "dotenv": "^2.0.0",
     "eslint": "^3.8.1",

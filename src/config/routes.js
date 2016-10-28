@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute } from 'react-router';
 import Main from '../components/Main';
 import Admin from '../components/Admin';
 
-import Home from '../components/Home';
+import HomeContainer from '../containers/HomeContainer';
 import NotFound from '../components/NotFound';
 import Settings from '../components/Settings';
 
@@ -25,7 +25,7 @@ const requireAuth = (nextState, replace) => {
 const Routes = (props) => (
   <Router {...props}>
     <Route path="/" component={Main} auth={auth}>
-      <IndexRoute component={Home} />
+      <IndexRoute component={HomeContainer} />
       <Route path="setari" component={Settings} onEnter={requireAuth} />
       <Route path="admin" component={Admin} onEnter={requireAuth} />
       <Route path="*" component={NotFound} />
