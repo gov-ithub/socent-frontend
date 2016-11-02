@@ -22,12 +22,12 @@ h1 {
   font-weight: 300;
 }
 .logo{
-  margin-left: 10vw;
+  margin-left: calc(10vw - 70px);
 }
 .avatar{
   width: 30px;
   border-radius: 50%;
-  
+
 }
 
 

@@ -94,11 +94,12 @@ class App extends Component {
       <div>
         <MuiThemeProvider muiTheme={muiTheme}>
           <AppBar
-            onLeftIconButtonTouchTap={() => this.setState({
+            onLeftIconButtonTouchTap={this.props.auth.isLoggedIn() ? () => this.setState({
               open: !this.state.open
-            })}
+            }) : null}
+            title={<IndexLink to="/" className="logo"><Img src={logo} alt="Bine ati venit" /></IndexLink>}
             style={{backgroundColor: '#004990'}}
-            iconElementLeft={!this.props.auth.isLoggedIn() ? <IndexLink to="/" className="logo"><Img src={logo} alt="Bine ati venit" /></IndexLink> : null}
+            iconClassNameLeft={!this.props.auth.isLoggedIn() ? 'hidden' : null }
             iconElementRight={this.props.auth.isLoggedIn() ? <LoggedIn profile={this.state.profile} auth={this.props.auth} logout={this.logout.bind(this)} /> : <Login onTouchTap={this.props.auth} />}
           />
         </MuiThemeProvider>
