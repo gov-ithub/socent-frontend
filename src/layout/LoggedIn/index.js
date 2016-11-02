@@ -4,8 +4,8 @@
 import React, { Component, PropTypes as T } from 'react'
 
 import { Avatar, IconButton, IconMenu, MenuItem, FontIcon} from 'material-ui'
-import { lightBlue500 } from 'material-ui/styles/colors'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
+
 export default class LoggedIn extends Component {
   //props: Props;
 
@@ -41,7 +41,7 @@ export default class LoggedIn extends Component {
                 marginRight: "10vw"
               }}>
               <MoreVertIcon
-                color={lightBlue500} />
+                color='white' />
             </IconButton>
           }
           targetOrigin={{horizontal: 'right', vertical: 'top'}}

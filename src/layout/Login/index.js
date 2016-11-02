@@ -2,7 +2,6 @@
 // Transform to Stateless Functional Components when finished
 
 import React, { Component } from 'react'
-import { lightBlue500 } from 'material-ui/styles/colors'
 
 import { FontIcon, IconButton} from 'material-ui'
 export default class Login extends Component {
@@ -15,13 +14,13 @@ export default class Login extends Component {
             marginRight: "10vw",
             width: "36px",
             height: "36px",
-            marginTop: "5px",
+            marginTop: "8px",
             padding: "5px"
           }}
           onTouchTap={this.props.onTouchTap.login}>
           <FontIcon
             className="fa fa-sign-in"
-            color={lightBlue500}
+            color='white'
             style={{width: "14px", height: "14px"}}
             />
         </IconButton>

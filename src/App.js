@@ -1,11 +1,11 @@
 // @flow
 import React, { PropTypes as T, Component, Element } from 'react'
-import { IndexLink, Link } from 'react-router'
+import { IndexLink } from 'react-router'
 
 import AuthService from './utils/AuthService'
 import type { UserProfile } from './utils/AuthService'
 import './App.css'
-import logo from '../public/nav-logo.jpg'
+import logo from '../public/logo.png'
 import Img from './components/Img'
 
 import Footer from './layout/Footer'
@@ -41,6 +41,9 @@ const styles = {
     margin: '0px auto',
     width: '80vw'
   },
+  svg: {
+    color: {lightBlue500}
+  }
 };
 
 class App extends Component {
@@ -94,10 +97,8 @@ class App extends Component {
             onLeftIconButtonTouchTap={() => this.setState({
               open: !this.state.open
             })}
-            titleStyle={{color: lightBlue500}}
-            style={{ backgroundColor: 'white'}}
-            iconStyleLeft={{color: lightBlue500}}
-            iconElementLeft={!this.props.auth.isLoggedIn() ? <IndexLink to="/" className="logo"><Img src={logo} alt="Bine ati venit" /></IndexLink> : <Link to="/admin" className="logo">Home</Link>}
+            style={{backgroundColor: '#004990'}}
+            iconElementLeft={!this.props.auth.isLoggedIn() ? <IndexLink to="/" className="logo"><Img src={logo} alt="Bine ati venit" /></IndexLink> : null}
             iconElementRight={this.props.auth.isLoggedIn() ? <LoggedIn profile={this.state.profile} auth={this.props.auth} logout={this.logout.bind(this)} /> : <Login onTouchTap={this.props.auth} />}
           />
         </MuiThemeProvider>
