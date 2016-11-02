@@ -4,26 +4,29 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "devDependencies": {
-    "react-scripts": "0.6.1",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",
     "eslint": "^3.8.1",
     "eslint-plugin-react": "^6.4.1",
-    "flow-bin": "^0.33.0"
+    "flow-bin": "^0.33.0",
+    "react-scripts": "0.6.1"
   },
   "dependencies": {
     "auth0-lock": "^10.4.0",
     "axios": "^0.15.2",
     "belle": "^2.0.9",
     "dotenv": "^2.0.0",
+    "history": "^4.3.0",
     "jwt-decode": "^2.1.0",
+    "material-ui": "^0.16.1",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.2",
-    "react-alert-es6": "^1.0.0",
     "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
+    "react-google-maps": "^4.11.0",
     "react-router": "^2.8.1",
     "react-router-bootstrap": "^0.23.1",
     "react-sticky": "^5.0.5",
+    "react-tap-event-plugin": "^1.0.0",
     "snyk": "^1.19.1"
   },
   "scripts": {

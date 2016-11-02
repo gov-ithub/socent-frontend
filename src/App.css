@@ -21,12 +21,13 @@ h1 {
   font-size: 60px;
   font-weight: 300;
 }
+.logo{
+  margin-left: 10vw;
+}
 .avatar{
   width: 30px;
   border-radius: 50%;
-  margin-top: 23px;
-  margin-right: -40px;
-  float: right;
+  
 }
 
 

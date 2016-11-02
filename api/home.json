@@ -1,8 +1,14 @@
 {
   "public": {
     "mapData": [
-      {"id": 1, "name": "Sacosa de panza", "location": [21,46]},
-      {"id": 2, "name": "Sacosa de rafie", "location": [21,45]}
+      {"id": 1, "name": "Sacosa de panza", "location": [45.5323585,23.4210002]},
+      {"id": 2, "name": "Sacosa de rafie", "location": [46.0617224,23.487963]}
+    ]
+  },
+  "enterprises": {
+    "enterprisesData": [
+      {"id": 1, "name": "Sacosa de panza srl", "location": [45.5323585,23.4210002]},
+      {"id": 2, "name": "Sacosa de rafie", "location": [46.0617224,23.487963]}
     ]
   }
 }

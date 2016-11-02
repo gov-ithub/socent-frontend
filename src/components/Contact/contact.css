@@ -1,0 +1,34 @@
+#contactCss.section .container{
+  padding-bottom: 0;
+  position: relative;
+}
+.popout{
+  width: 20em;
+  height: 10em;
+}
+.overlay{
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 120px;
+  left: 200px;
+  background-color: #ffffff;
+  padding: 20px;
+}
+h4 span{
+  font-size: 28px!important;
+}
+.spacer{
+  padding: 20px 0;
+}
+@media (max-width: 767px) {
+  .overlay{
+    position: relative;
+    width: 100%;
+    height: auto;
+    top: 0px;
+    left: 0px;
+    background-color: #ffffff;
+    padding: 20px;
+  }
+}

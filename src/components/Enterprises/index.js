@@ -6,29 +6,29 @@ const styles = {
     minHeight: "calc(100vh - 110px)"
   }
 }
-function HomeUI(props) {
+function EnterprisesUI(props) {
   return (
     <div>
-      <h1>Home Containerised</h1>
+      <h1>Lista Intreprinderi</h1>
     </div>
   );
 }
-HomeUI.propTypes = {
-  mapData: PropTypes.arrayOf(React.PropTypes.object).isRequired,
+EnterprisesUI.propTypes = {
+  enterprisesData: PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
-function Home(props) {
+function Enterprises(props) {
   return (
     <div style={styles.container}>
       {
         props.isLoading === true
           ? <Loading />
-          : <HomeUI
-              mapData={props.mapData} />
+          : <EnterprisesUI
+              enterprisesData={props.enterprisesData} />
       }
     </div>
   );
 }
-Home.propTypes = {
+Enterprises.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 };
-export default Home;
+export default Enterprises;
