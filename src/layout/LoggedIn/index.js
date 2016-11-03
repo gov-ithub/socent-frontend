@@ -1,7 +1,7 @@
 
 // Transform to Stateless Functional Components when finished
 
-import React, { Component, PropTypes as T } from 'react'
+import React, { Component } from 'react'
 
 import { Avatar, IconButton, IconMenu, MenuItem, FontIcon} from 'material-ui'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
@@ -9,14 +9,6 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 export default class LoggedIn extends Component {
   //props: Props;
 
-  static contextTypes = {
-    router: T.object
-  }
-
-  logout() {
-    this.props.onTouchTap.logout();
-    this.context.router.push('/');
-  }
   render(): Element<any> {
 
     const { profile } = this.props

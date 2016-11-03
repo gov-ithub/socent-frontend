@@ -84,6 +84,7 @@ class App extends Component {
       if (this.state.profile) {
         sidebar = <div>
           <Sidebar
+            location={children}
             profile={this.state.profile}
             handleToggleSidebar={this.handleToggleSidebar.bind(this)}
             open={this.state.open}/>
