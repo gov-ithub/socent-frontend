@@ -45,8 +45,8 @@ Ca și framework folosim [Jest](https://facebook.github.io/jest/). [Documentați
 
 ## Development
 Pentru Auth0 aveti nevoie de cont pe Auth0 și un Single Page client pentru a testa/dezvolta local. Apoi modificati .env_template in .env cu credentialele voastre. E nevoie sa adaugati in Allowed Callback URLs, Allowed Logout URLs http://localhost:3000/admin, http://localhost:3000, http://localhost:3001/home. la Allowed Origins (CORS) bagati http://localhost:3000  
-- `npm install -g json-server`
-- `json-server --watch api/home.json --routes api/routes.json --port 3001`: adauga in folderul `/api` endpointurile de care ai nevoie. json server le va rula de acolo. [documentatie](https://github.com/typicode/json-server)
+- `npm run json-server`: adauga in folderul `/api` endpointurile de care ai nevoie. json server le va rula de acolo. [documentatie](https://github.com/typicode/json-server)
+- `npm run flow`: Rulează typechecker-ul Flow
 - `npm start`: Servește aplicația pe portul 3000
 - `npm run build`: Pregătește aplicația pentru deployment (include minification, bundling, etc)
 - `npm run eject`: Elimină dependența de [create-react-app](https://github.com/facebookincubator/create-react-app/). Poate va fi necesar, dar până atunci please don't touch.
