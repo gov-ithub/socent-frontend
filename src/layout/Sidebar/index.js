@@ -14,6 +14,7 @@ import ActionHome from 'material-ui/svg-icons/action/home'
 import ActionStore from 'material-ui/svg-icons/action/store'
 import ActionSettings from 'material-ui/svg-icons/action/settings'
 import ActionHelp from 'material-ui/svg-icons/action/help'
+import SocialPeople from 'material-ui/svg-icons/social/people'
 import {List, ListItem} from 'material-ui/List';
 
 
@@ -72,6 +73,18 @@ export default class Sidebar extends Component {
                     key={2}
                     primaryText="Inregistrare"
                     containerElement={<Link to="/admin/inregistrare" />}/>,
+                ]}
+              />
+              <ListItem
+                primaryText="Utilizatori"
+                leftIcon={<SocialPeople />}
+                initiallyOpen={false}
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem
+                    key={1}
+                    primaryText="Lista"
+                    containerElement={<Link to="/admin/utilizatori" />}/>,
                 ]}
               />
             </List>
