@@ -7,7 +7,7 @@ import './footer.css';
 export default class Footer extends Component {
   render() {
     return (
-      <div id="footer" className="section gray">
+      <div id='footer' className={!this.props.auth.isLoggedIn() ? 'section grey' : 'section grey ml'}>
         <Grid className="no-pad">
           <Row>
             <Col md={6} sm={6} xs={12} >

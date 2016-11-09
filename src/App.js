@@ -38,9 +38,17 @@ type State = {
 }
 
 const styles = {
-  container: {
+  containerPublic: {
     margin: '0px auto',
     width: '80vw'
+  },
+  containerPrivate: {
+    margin: '0px auto',
+    width: '100vw',
+    display: "block",
+    paddingLeft: 300,
+    minHeight: "calc(100vh - 50px)",
+    paddingTop: 90
   },
   svg: {
     color: {lightBlue500}
@@ -59,7 +67,7 @@ class App extends Component {
     super(props, context);
     this.state = {
       profile: this.props.auth.getProfile(),
-      open: false
+      open: true
     }
     this.props.auth.on('profile_updated', (newProfile) => {
       this.setState({ profile: newProfile})
@@ -87,32 +95,31 @@ class App extends Component {
           <Sidebar
             location={children}
             profile={this.state.profile}
-            handleToggleSidebar={this.handleToggleSidebar.bind(this)}
             open={this.state.open}/>
           </div>
       }
     }
     return (
+      <MuiThemeProvider muiTheme={muiTheme}>
       <div>
-        <MuiThemeProvider muiTheme={muiTheme}>
           <AppBar
             onLeftIconButtonTouchTap={this.props.auth.isLoggedIn() ? () => this.setState({
               open: !this.state.open
             }) : null}
             title={<IndexLink to="/" className="logo"><Img src={logo} alt="Bine ati venit" /></IndexLink>}
-            style={{backgroundColor: '#004990'}}
+            style={{backgroundColor: '#004990', position: 'fixed'}}
             iconClassNameLeft={!this.props.auth.isLoggedIn() ? 'hidden' : null }
             iconElementRight={this.props.auth.isLoggedIn() ? <LoggedIn profile={this.state.profile} auth={this.props.auth} logout={this.logout.bind(this)} /> : <Login onTouchTap={this.props.auth} />}
           />
-        </MuiThemeProvider>
-        <div style={styles.container}>
+        <div style={!this.props.auth.isLoggedIn() ? styles.containerPublic : styles.containerPrivate}>
           {sidebar}
           <div>
             {children}
           </div>
         </div>
-        <Footer />
+        <Footer auth={this.props.auth}/>
       </div>
+      </MuiThemeProvider>
     );
   }
 }

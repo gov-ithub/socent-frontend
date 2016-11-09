@@ -3,13 +3,8 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import {Drawer, Card, CardHeader, Divider, IconButton} from 'material-ui'
+import {Drawer, Card, CardHeader, Divider} from 'material-ui'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import { lightBlue500 } from 'material-ui/styles/colors'
-
-import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import ActionHome from 'material-ui/svg-icons/action/home'
 import ActionStore from 'material-ui/svg-icons/action/store'
 import ActionSettings from 'material-ui/svg-icons/action/settings'
@@ -17,12 +12,6 @@ import ActionHelp from 'material-ui/svg-icons/action/help'
 import SocialPeople from 'material-ui/svg-icons/social/people'
 import {List, ListItem} from 'material-ui/List';
 
-
-const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: lightBlue500,
-  },
-});
 
 export default class Sidebar extends Component {
   state = {
@@ -42,11 +31,10 @@ export default class Sidebar extends Component {
   };
   render() {
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
+
         <Drawer
-          open={this.props.open}
-          style={{root: {top: '64px'}}}>
-          <IconButton onTouchTap={this.props.handleToggleSidebar}><NavigationClose/></IconButton>
+          containerStyle={{height: 'calc(100% - 64px)', top: 64}}
+          open={this.props.open}>
             <Card>
               <CardHeader
                 title={this.props.profile.name}
@@ -67,10 +55,12 @@ export default class Sidebar extends Component {
                 nestedItems={[
                   <ListItem
                     key={1}
+                    insetChildren={true}
                     primaryText="Lista"
                     containerElement={<Link to="/admin/intreprinderi" />}/>,
                   <ListItem
                     key={2}
+                    insetChildren={true}
                     primaryText="Inregistrare"
                     containerElement={<Link to="/admin/inregistrare" />}/>,
                 ]}
@@ -103,7 +93,7 @@ export default class Sidebar extends Component {
             </List>
           </div>
         </Drawer>
-      </MuiThemeProvider>
+
     )
   }
 }

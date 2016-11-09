@@ -1,5 +1,4 @@
 import React, {PropTypes, Component} from 'react'
-import utils from '../utils'
 import Registration from '../components/Registration'
 
 export default class RegistrationContainer extends Component {
@@ -14,15 +13,14 @@ export default class RegistrationContainer extends Component {
     fetch(`/enterprises`, {
       accept: 'application/json',
     })
-    .then(utils.checkStatus)
-    .then(utils.parseJSON)
-    .then(response => {
-      this.setState({
-        isLoading: false,
-        enterprises: response.enterprisesData
-      });
-    })
-  }
+			.then(res => res.json())
+			.then(data => {
+        this.setState({
+          isLoading: false,
+          enterprises: data.enterprisesData
+        });
+			});
+	}
   render() {
     return (
       <div>

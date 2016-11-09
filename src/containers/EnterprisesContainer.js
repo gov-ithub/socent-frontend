@@ -1,4 +1,4 @@
-import React, {PropTypes, Component} from 'react'
+import React, {PropTypes as T, Component} from 'react'
 import utils from '../utils'
 import Enterprises from '../components/Enterprises'
 
@@ -34,5 +34,5 @@ export default class EnterprisesContainer extends Component {
   }
 }
 EnterprisesContainer.contextTypes = {
-  router: PropTypes.object.isRequired,
+  router: T.object.isRequired,
 };

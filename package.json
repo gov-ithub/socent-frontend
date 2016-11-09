@@ -17,6 +17,8 @@
     "belle": "^2.0.9",
     "dotenv": "^2.0.0",
     "history": "^4.3.0",
+    "intl": "^1.2.5",
+    "intl-locales-supported": "^1.0.0",
     "jwt-decode": "^2.1.0",
     "material-ui": "^0.16.1",
     "react": "^15.3.2",

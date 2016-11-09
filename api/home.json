@@ -1,14 +1,97 @@
 {
   "public": {
     "mapData": [
-      {"id": 1, "name": "Sacosa de panza", "location": [45.5323585,23.4210002]},
-      {"id": 2, "name": "Sacosa de rafie", "location": [46.0617224,23.487963]}
+      {
+        "id": 1,
+        "name": "Sacosa de panza",
+        "location": [
+          45.5323585,
+          23.4210002
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Sacosa de rafie",
+        "location": [
+          46.0617224,
+          23.487963
+        ]
+      }
     ]
   },
   "enterprises": {
-    "enterprisesData": [
-      {"id": 1, "name": "Sacosa de panza srl", "location": [45.5323585,23.4210002]},
-      {"id": 2, "name": "Sacosa de rafie", "location": [46.0617224,23.487963]}
+    "id": "NGSRBJJ7FCSIY60YC3XJK8C8P7DQHH0H",
+    "name": "cezar",
+    "applicationDate": "2016-11-03T22:00:00.000Z"
+  },
+  "enterpriseslist": {
+    "data": [
+      {
+        "id": 1,
+        "enterpriseType": "regular",
+        "entrepreneur": {
+          "personIdNo": "1793203140302",
+          "personName": "Cezar Neaga",
+          "typeId": "Buletin",
+          "serieId": "AX",
+          "numarId": "299230",
+          "createdBy": "Politia Sebes",
+          "createdAt": "23.03.2007",
+          "designation": "Founder",
+          "proofOfDesignation": "Uploaded file 2"
+        },
+        "name": "Sacosa de panza srl",
+        "applicationDate": "23.03.2016",
+        "location": [
+          45.5323585,
+          23.4210002
+        ],
+        "status": "In Progress"
+      },
+      {
+        "id": 2,
+        "name": "Sacosa de rafie",
+        "location": [
+          46.0617224,
+          23.487963
+        ],
+        "status": "Complet"
+      }
+    ],
+    "list": [
+      {
+        "id": 1,
+        "enterpriseType": "regular",
+        "name": "Sacosa de panza",
+        "owner": "Maria Paslaru",
+        "applicationDate": "23.03.2016",
+        "completionStatus": "10",
+        "lastEditedAt": "15.04.2016",
+        "reviewStatus": "in prelucrare",
+        "certificateDate": ""
+      },
+      {
+        "id": 2,
+        "enterpriseType": "insertie",
+        "name": "Plasa de panza",
+        "owner": "Ioana Georgescu",
+        "applicationDate": "23.04.2016",
+        "completionStatus": "100",
+        "lastEditedAt": "15.05.2016",
+        "reviewStatus": "complet",
+        "certificateDate": ""
+      },
+      {
+        "id": 3,
+        "enterpriseType": "regular",
+        "name": "Second chance",
+        "owner": "Maria Paslaru",
+        "applicationDate": "23.04.2016",
+        "completionStatus": "100",
+        "lastEditedAt": "31.04.2016",
+        "reviewStatus": "",
+        "certificateDate": "01.05.2016"
+      }
     ]
   }
 }
