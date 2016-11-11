@@ -11,6 +11,7 @@ function HomeUI(props) {
   return (
     <div>
       <h1>Home Containerised</h1>
+      <pre>{JSON.stringify(props.mapData)}</pre>
     </div>
   );
 }
@@ -31,5 +32,6 @@ function Home(props) {
 }
 Home.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  mapData: PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
 export default Home;

@@ -7,7 +7,7 @@ export default class HomeContainer extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      mapdata: {},
+      mapdata: [],
     };
   }
   componentDidMount() {
