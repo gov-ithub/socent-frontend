@@ -15,3 +15,6 @@ build
 .env
 npm-debug.log
 yarn.lock
+
+# flow
+flow-typed

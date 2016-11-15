@@ -38,6 +38,16 @@ cd socent-frontend
 npm install
 ```
 
+## Flow
+Pentru a folosi Flow este necesară instalarea definițiilor pentru librăriile 3rd party.
+
+```
+./node_modules/flow-typed/dist/cli.js install // dependințe locale
+./node_modules/flow-typed/dist/cli.js install jest@17 // jest vine cu CRA și trebuie instalate definițiile separat de restul
+```
+
+După ce se instalează toate definițiile, typechecker-ul Flow se poate rula cu `npm run-script flow` (prima rulare este mai înceată, următoarele sunt instante).
+
 ## Teste
 Rulează `npm test`. `npm test` rulează doar testele nou introduse, de la ultimul commit, by default, însă vă permite rularea tuturor testelor (you'll know what to do when you see it).
 
