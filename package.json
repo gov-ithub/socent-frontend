@@ -7,6 +7,7 @@
     "eslint": "^3.8.1",
     "eslint-plugin-react": "^6.4.1",
     "flow-bin": "^0.33.0",
+    "flow-typed": "^2.0.0",
     "json-server": "^0.8.23",
     "react-scripts": "0.6.1"
   },
@@ -15,6 +16,7 @@
     "axios": "^0.15.2",
     "belle": "^2.0.9",
     "dotenv": "^2.0.0",
+    "es6-promise": "^4.0.5",
     "history": "^4.3.0",
     "intl": "^1.2.5",
     "intl-locales-supported": "^1.0.0",

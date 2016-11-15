@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react'
 import Registration from '../components/Registration'
-import utils from '../utils'
+import API from '../api/API'
+
 export default class RegistrationContainer extends Component {
   constructor(props) {
     super(props);
@@ -8,12 +9,15 @@ export default class RegistrationContainer extends Component {
       isLoading: true,
       enterprises: {},
     };
+    this.API = new API();
   }
+
   componentDidMount() {
     const id = this.props.params.id
 
-    utils
-      .getEnterprise(id)
+    this.API
+      .getEnterprise
+      .getByID(id)
       .then(enterprise => {
         this.setState({
           enterprise: enterprise.data,
@@ -21,6 +25,7 @@ export default class RegistrationContainer extends Component {
         })
       })
 	}
+
   render() {
     return (
       <div>

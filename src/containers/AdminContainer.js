@@ -1,8 +1,6 @@
 import React, {PropTypes, Component} from 'react'
-import utils from '../utils'
+import API from '../api/API.js'
 import Admin from '../components/Admin'
-import axios from 'axios'
-
 
 export default class AdminContainer extends Component {
   constructor(props) {
@@ -17,11 +15,13 @@ export default class AdminContainer extends Component {
       enterpriseNumber: '',
       openConfirm: false
     };
-
+    this.API = new API();
   }
+
   handleModalOpen() {
     this.setState({modalState: true});
   }
+
   addEnterpriseEntry(enterprise){
     const newEnterprise = {
       number: this.state.enterpriseNumber,
@@ -29,57 +29,65 @@ export default class AdminContainer extends Component {
       applicationDate: this.state.submissionDate,
       //owner: this.state.profile.name
     }
-    axios.post('https://socent.cezarneaga.eu/api/v1/enterprises', newEnterprise)
-    .then(response => {
-      const enterprise = response.data.enterprise
-      this.setState({
-        enterprises: this.state.enterprises.concat([enterprise]),
-        modalState: false,
-        submissionDate: null
+    this.API
+      .getEnterprise()
+      .create(newEnterprise)
+      .then(response => {
+        const enterprise = response.data.enterprise
+        this.setState({
+          enterprises: this.state.enterprises.concat([enterprise]),
+          modalState: false,
+          submissionDate: null
+        })
       })
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
+      .catch(function (error) {
+        console.log(error);
+      })
   }
+
   initiateDeleteEntry() {
     this.setState({
       openConfirm: true
     });
   }
+
   deleteEnterpriseEntry(id) {
-    axios.delete(`https://socent.cezarneaga.eu/api/v1/enterprises/${id}`)
-    //axios.patch(`https://socent.cezarneaga.eu/api/v1/enterprises/${id}`,{status:10})
+    this.API.getEnterprise().delete(id);
     const enterprises = this.state.enterprises.filter(enterprise => enterprise.id !== id)
     this.setState({
       openConfirm: false,
       enterprises: enterprises
     });
   }
+
   handleModalClose() {
     this.setState({modalState: false});
   }
+
   handleDateChange(e, date) {
     this.setState({ submissionDate: date })
   }
+
   handleNameChange(e) {
     this.setState({ enterpriseName: e.target.value })
   }
+
   handleNumberChange(e) {
     this.setState({ enterpriseNumber: e.target.value })
   }
 
   componentDidMount() {
-    utils
-      .getEnterprises()
+    this.API
+      .getEnterprise()
+      .list({'status': 'neq|10'})
       .then(enterprises => {
         this.setState({
-          enterprises: enterprises.data.enterprises,
+          enterprises: enterprises.data,
           isLoading: false
         })
-      })
-
+      });
   }
+
   render() {
     return (
       <div>
@@ -103,6 +111,7 @@ export default class AdminContainer extends Component {
     );
   }
 }
+
 AdminContainer.contextTypes = {
   router: PropTypes.object.isRequired,
 };

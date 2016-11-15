@@ -1,5 +1,5 @@
 import React, {PropTypes as T, Component} from 'react'
-import utils from '../utils'
+import API from '../api/API.js'
 import Enterprises from '../components/Enterprises'
 
 export default class EnterprisesContainer extends Component {
@@ -9,23 +9,28 @@ export default class EnterprisesContainer extends Component {
       isLoading: true,
       enterprises: [],
     };
+    this.API = new API();
   }
+
   componentDidMount() {
-    utils
-      .getEnterprises()
+    this.API
+      .getEnterprise()
+      .list({'status': 'neq|10'})
       .then(enterprises => {
         this.setState({
           enterprises: enterprises.data.enterprises,
           isLoading: false
-        })
-      })
+        });
+      });
   }
+
   render() {
+    const { isLoading, enterprises } = this.state;
     return (
       <div>
         <Enterprises
-          isLoading={this.state.isLoading}
-          enterprises={this.state.enterprises} />
+          isLoading={isLoading}
+          enterprises={enterprises} />
       </div>
     );
   }
