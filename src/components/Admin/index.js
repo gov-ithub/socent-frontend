@@ -7,7 +7,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
-import { cyan500 } from 'material-ui/styles/colors'
+import { lightBlue900 } from 'material-ui/styles/colors'
 import AddEntry from '../AddEntry'
 const styles = {
   refresh: {
@@ -50,10 +50,10 @@ function AdminUI(props) {
             displaySelectAll={false}
             adjustForCheckbox={false}>
             <TableRow style={{height:30}}>
-              <TableHeaderColumn style={{width:'30%', height:20, color: 'white', backgroundColor: cyan500, fontSize:14 }}>Intreprindere</TableHeaderColumn>
-              <TableHeaderColumn style={{height:20, color: 'white', backgroundColor: cyan500, fontSize:14, width:'20%' }}>Data Depunere Aplicare</TableHeaderColumn>
-              <TableHeaderColumn style={{height:20, color: 'white', backgroundColor: cyan500, fontSize:14, width:'30%' }}>Inregistrata de...</TableHeaderColumn>
-              <TableHeaderColumn style={{height:20, color: 'white', backgroundColor: cyan500, fontSize:14, textAlign: 'right', width:'20%' }}>Actiuni</TableHeaderColumn>
+              <TableHeaderColumn style={{width:'30%', height:20, color: 'white', backgroundColor: lightBlue900, fontSize:14 }}>Intreprindere</TableHeaderColumn>
+              <TableHeaderColumn style={{height:20, color: 'white', backgroundColor: lightBlue900, fontSize:14, width:'20%' }}>Data Depunere Aplicare</TableHeaderColumn>
+              <TableHeaderColumn style={{height:20, color: 'white', backgroundColor: lightBlue900, fontSize:14, width:'30%' }}>Inregistrata de...</TableHeaderColumn>
+              <TableHeaderColumn style={{height:20, color: 'white', backgroundColor: lightBlue900, fontSize:14, textAlign: 'right', width:'20%' }}>Actiuni</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
@@ -66,11 +66,14 @@ function AdminUI(props) {
               <TableRowColumn style={{width:'20%'}}>{listItem.applicationDate}</TableRowColumn>
               <TableRowColumn style={{width:'30%'}}>{listItem.owner}</TableRowColumn>
               <TableRowColumn style={{textAlign: 'right', width:'20%'}}>
-                <IconButton containerElement={<Link to={`/admin/inregistrare/${listItem.id}`} />}>
-                  <EditorModeEdit/>
+                <IconButton
+                  containerElement={<Link to={`/admin/inregistrare/${listItem.id}`} />}
+                  iconStyle={{width: 18, height: 18}}>
+                  <EditorModeEdit
+                    color={lightBlue900} />
                 </IconButton>
-                <IconButton onTouchTap={() => props.initiateDeleteEntry()}>
-                  <ActionDelete />
+                <IconButton onTouchTap={() => props.initiateDeleteEntry()} iconStyle={{width: 18, height: 18}}>
+                  <ActionDelete color={lightBlue900} />
                 </IconButton>
                 <Snackbar
                   open={props.openConfirm}

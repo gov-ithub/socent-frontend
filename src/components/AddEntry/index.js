@@ -2,7 +2,7 @@ import React from 'react'
 import { RaisedButton, FlatButton, Dialog, TextField, DatePicker } from 'material-ui';
 import ActionNoteAdd from 'material-ui/svg-icons/action/note-add';
 import areIntlLocalesSupported from 'intl-locales-supported'
-
+import { lightBlue900 } from 'material-ui/styles/colors'
 let DateTimeFormat
 if (areIntlLocalesSupported(['ro', 'ro-RO'])) {
   DateTimeFormat = global.Intl.DateTimeFormat
@@ -40,9 +40,10 @@ function AddEntry(props) {
     <div>
       <RaisedButton
         label="Inregistreaza o cerere primita"
-        primary={true}
+        backgroundColor={lightBlue900}
+        labelColor='white'
         onTouchTap={props.handleModalOpen}
-        icon={<ActionNoteAdd />}
+        icon={<ActionNoteAdd color='white' />}
         style={styles.button}
       />
       <Dialog

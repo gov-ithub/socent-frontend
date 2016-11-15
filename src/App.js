@@ -18,13 +18,13 @@ import Sidebar from './layout/Sidebar'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import { lightBlue500 } from 'material-ui/styles/colors'
+import { lightBlue900 } from 'material-ui/styles/colors'
 
 import { AppBar } from 'material-ui'
 
 const muiTheme = getMuiTheme({
   palette: {
-    accent1Color: lightBlue500,
+    accent1Color: lightBlue900,
   },
 });
 
@@ -52,7 +52,7 @@ const styles = {
     paddingTop: 90
   },
   svg: {
-    color: {lightBlue500}
+    color: {lightBlue900}
   },
 
 };
