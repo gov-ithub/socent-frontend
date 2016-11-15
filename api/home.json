@@ -24,34 +24,34 @@
       "id": 980190962,
       "number": "One",
       "name": "SC Societatea Comerciala SRL",
-      "tax_registration_code": "CUI-0",
-      "founded_at": "2016-11-10",
-      "secondary_caens": [
+      "taxRegistrationCode": "CUI-0",
+      "foundedAt": "2016-11-10",
+      "secondaryCaens": [
         "two",
         "three"
       ],
-      "contact_name": "Johann Strauss",
+      "contactName": "Johann Strauss",
       "entrepreneur": {
         "id": 980190962,
-        "identification_number": "7",
+        "identificationNumber": "7",
         "name": "Musk, Elon",
-        "card_type": "A",
-        "card_series": "T",
-        "card_number": "70",
-        "issued_by": "SkyNet",
+        "cardType": "A",
+        "cardSeries": "T",
+        "cardNumber": "70",
+        "issuedBy": "SkyNet",
         "designation": "Hunter-Killer",
-        "proof_of_designation_url": null
+        "proofOfDesignationUrl": null
       },
-      "primary_caen": {
+      "primaryCaen": {
         "id": 980190962,
         "code": "CAEN1",
         "description": "Lorem"
       },
-      "enterprise_category": {
+      "enterpriseCategory": {
         "id": 980190962,
         "description": "A Category"
       },
-      "social_intervention_domain": {
+      "socialInterventionDomain": {
         "id": 980190962,
         "description": "I say, jolly black dog you spot there, g`vnor"
       }
@@ -60,34 +60,34 @@
       "id": 298486374,
       "number": "two",
       "name": "Ion Ionut Ionel PFA",
-      "tax_registration_code": "CUJ-1",
-      "founded_at": "2016-11-10",
-      "secondary_caens": [
+      "taxRegistrationCode": "CUJ-1",
+      "foundedAt": "2016-11-10",
+      "secondaryCaens": [
         "four",
         "five"
       ],
-      "contact_name": "We'll contact you",
+      "contactName": "We'll contact you",
       "entrepreneur": {
         "id": 298486374,
-        "identification_number": "-1",
+        "identificationNumber": "-1",
         "name": "Conor, Sandra",
-        "card_type": "Human",
-        "card_series": "9",
-        "card_number": "last one",
-        "issued_by": "Linda",
+        "cardType": "Human",
+        "cardSeries": "9",
+        "cardNumber": "last one",
+        "issuedBy": "Linda",
         "designation": "darling",
-        "proof_of_designation_url": null
+        "proofOfDesignationUrl": null
       },
-      "primary_caen": {
+      "primaryCaen": {
         "id": 298486374,
         "code": "CAEN2",
         "description": "Ipsum"
       },
-      "enterprise_category": {
+      "enterpriseCategory": {
         "id": 298486374,
         "description": "Something else"
       },
-      "social_intervention_domain": {
+      "socialInterventionDomain": {
         "id": 298486374,
         "description": "Oh my! It moved!"
       }
