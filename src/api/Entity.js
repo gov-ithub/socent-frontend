@@ -6,6 +6,7 @@ export const APIEndpoints = {
   enterprises: "enterprises",
   public: "public",
   list: "list",
+  industry_classifications: "industry-classifications"
 };
 export type APIEndpoint = $Keys<typeof APIEndpoints>;
 
@@ -31,7 +32,7 @@ export default class Entity {
   _buildEndpoint(
     endpoint: APIEndpoint,
   ): string {
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV === 'development') {
       return this._baseURI + "/api/" + this._version + "/" + endpoint;
     } else {
       return location.protocol + '//' + location.hostname + ':3001/' + endpoint;
@@ -86,7 +87,7 @@ export default class Entity {
     );
   }
 
-  // TODO: do we use PATCH or POST + 303 header?
+  // TO DO: do we use PATCH or POST + 303 header?
   _update(
     endpoint: APIEndpoint,
     id: number,

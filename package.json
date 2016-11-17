@@ -20,31 +20,23 @@
     "history": "^4.3.0",
     "intl": "^1.2.5",
     "intl-locales-supported": "^1.0.0",
-    "jwt-decode": "^2.1.0",
     "material-ui": "^0.16.1",
-    "react": "^15.3.2",
-    "react-addons-css-transition-group": "^15.3.2",
-    "react-bootstrap": "^0.30.5",
-    "react-dom": "^15.3.2",
+    "react": "15.3.2",
+    "react-dom": "15.3.2",
+    "react-addons-css-transition-group": "15.3.2",
     "react-google-maps": "^4.11.0",
     "react-router": "^2.8.1",
-    "react-router-bootstrap": "^0.23.1",
-    "react-sticky": "^5.0.5",
-    "react-tap-event-plugin": "^1.0.0",
-    "snyk": "^1.19.1"
+    "react-tap-event-plugin": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect",
     "flow": "./node_modules/flow-bin/vendor/flow",
     "json-server": "./node_modules/.bin/json-server --watch api/home.json --routes api/routes.json --port 3001"
   },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "snyk": true
+  }
 }

@@ -1,260 +1,202 @@
-import React, { PropTypes } from 'react'
-import Loading from '../Loading'
-import {RadioButton, RadioButtonGroup, Divider, TextField, SelectField, MenuItem, DatePicker} from 'material-ui';
-// import ComboBox from 'belle'
-import areIntlLocalesSupported from 'intl-locales-supported'
-let DateTimeFormat
-if (areIntlLocalesSupported(['ro', 'ro-RO'])) {
-  DateTimeFormat = global.Intl.DateTimeFormat
-} else {
-  const IntlPolyfill = require('intl')
-  DateTimeFormat = IntlPolyfill.DateTimeFormat
-  require('intl/locale-data/jsonp/ro')
-  require('intl/locale-data/jsonp/ro-RO')
-}
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { lightBlue500 } from 'material-ui/styles/colors'
-const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: lightBlue500,
-  },
-});
-const styles = {
-  radioButton: {
-    marginRight: 26,
-    width: 'auto',
-    float: 'left',
-    whiteSpace: 'nowrap'
-  },
-  paper: {
-    width:'100%',
-    // textAlign: 'center',
-    padding: 20
+import React, {Component} from 'react';
+import {
+  Step,
+  Stepper,
+  StepLabel,
+  StepContent,
+} from 'material-ui/Stepper';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import Type from './01type.js'
+import Entrepreneur from './02entrepreneur.js'
+import Entreprise from './03enterprise.js'
+import Category from './04category.js'
+import Caens from './05caens.js'
+import Domains from './06domains.js'
+import Address from './07address.js'
+
+import API from '../../api/API'
+
+
+/**
+ * Vertical steppers are designed for narrow screen sizes. They are ideal for mobile.
+ *
+ * To use the vertical stepper with the contained content as seen in spec examples,
+ * you must use the `<StepContent>` component inside the `<Step>`.
+ *
+ * <small>(The vertical stepper can also be used without `<StepContent>` to display a basic stepper.)</small>
+ */
+export default class Registration extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      isLoading:true,
+      finished: false,
+      stepIndex: 6,
+      caenPrimary: '',
+      caenSecondary: [null],
+      caens: []
+    }
+    this.API = new API()
+  }
+  componentDidMount(){
+    this.API
+      .getCaens()
+      .list()
+      .then(response => {
+          const modDataSource = response.data.industryClassifications.map((value, i) => {
+            return ({
+              clasz: value.clasz,
+              description: `${value.clasz}: ${value.description}`
+            })
+        })
+        this.setState({
+          caens: modDataSource,
+          isLoading: false
+        })
+      });
+  }
+  // handleSelection = (value, name) => this.setState({ [name]: value })
+  // handleCustomDisplaySelections = (values) => {
+  //   if (values.length) {
+  //     return (
+  //       <div style={{display: 'flex', flexWrap: 'wrap'}}>{values.map((caen) => (
+  //         <div key={caen['id']} style={{margin: 5}}>
+  //           <span>{caen['clasz']}</span> - <span>{caen['description']}</span>,
+  //         </div>))}
+  //       </div>)
+  //   } else return 'Alege CAENurile Secundare'
+  // }
+  handleNext = () => {
+    const {stepIndex} = this.state;
+    this.setState({
+      stepIndex: stepIndex + 1,
+      finished: stepIndex >= 2,
+    });
+  };
+  handlePrev = () => {
+    const {stepIndex} = this.state;
+    if (stepIndex > 0) {
+      this.setState({stepIndex: stepIndex - 1});
+    }
+  };
+  renderStepActions(step) {
+    const {stepIndex} = this.state;
+
+    return (
+      <div style={{margin: '12px 0'}}>
+        <RaisedButton
+          label={stepIndex === 6 ? 'Finalizare' : 'Inainte'}
+          disableTouchRipple={true}
+          disableFocusRipple={true}
+          primary={true}
+          onTouchTap={this.handleNext}
+          style={{marginRight: 12}}
+        />
+        {step > 0 && (
+          <FlatButton
+            label="Inapoi"
+            disabled={stepIndex === 0}
+            disableTouchRipple={true}
+            disableFocusRipple={true}
+            onTouchTap={this.handlePrev}
+          />
+        )}
+      </div>
+    );
+  }
+  addCaenComponent = () => {
+    const { caenSecondary } = this.state;
+    const newCaenSecondary = caenSecondary.concat(null);
+    this.setState({ caenSecondary: newCaenSecondary });
+  }
+  handleTextFieldChange(e) {
+    this.setState({caenPrimary: e.target.value})
+  }
+  render() {
+    const {finished, stepIndex} = this.state;
+
+    return (
+      <div style={{maxWidth: '85%', minHeight: '80vh', margin: 'auto', paddingBottom:200}}>
+        <h3>Inregistrare</h3>
+        <Stepper activeStep={stepIndex} orientation="vertical">
+          <Step style={{boxSizing: 'content-box'}}>
+            <StepLabel style={{fontSize:20}}>Ce fel de inregistrare vrei sa inregistrezi?</StepLabel>
+            <StepContent>
+              <Type />
+              {this.renderStepActions(0)}
+            </StepContent>
+          </Step>
+          <Step style={{boxSizing: 'content-box'}}>
+            <StepLabel style={{fontSize:20}}>Cine depune cererea?</StepLabel>
+            <StepContent>
+              <Entrepreneur />
+              {this.renderStepActions(1)}
+            </StepContent>
+          </Step>
+          <Step style={{boxSizing: 'content-box'}}>
+            <StepLabel style={{fontSize:20}}>Care este entitatea juridica?</StepLabel>
+            <StepContent>
+              <Entreprise />
+              {this.renderStepActions(2)}
+            </StepContent>
+          </Step>
+
+          <Step style={{boxSizing: 'content-box'}}>
+            <StepLabel style={{fontSize:20}}>Care sunt domeniile de activitate economica?</StepLabel>
+            <StepContent>
+              <Caens
+                // handleCustomDisplaySelections={this.handleCustomDisplaySelections.bind(this)}
+                // handleSelection={this.handleSelection.bind(this)}
+                caenSecondary={this.state.caenSecondary}
+                caenPrimary={this.state.caenPrimary}
+                caens={this.state.caens}
+                addCaenComponent={this.addCaenComponent.bind(this)}
+                handleTextFieldChange={this.handleTextFieldChange.bind(this)} />
+              {this.renderStepActions(3)}
+            </StepContent>
+          </Step>
+          <Step style={{boxSizing: 'content-box'}}>
+            <StepLabel style={{fontSize:20}}>Care sunt domeniile de interventie sociala?</StepLabel>
+            <StepContent>
+              <Domains
+                caenSecondary={this.state.caenSecondary}
+                caenPrimary={this.state.caenPrimary}
+                caens={this.state.caens}
+                addCaenComponent={this.addCaenComponent.bind(this)}
+                handleTextFieldChange={this.handleTextFieldChange.bind(this)} />
+              {this.renderStepActions(4)}
+            </StepContent>
+          </Step>
+          <Step style={{boxSizing: 'content-box'}}>
+            <StepLabel style={{fontSize:20}}>Care este categoria de intreprindere sociala?</StepLabel>
+            <StepContent>
+              <Category />
+              {this.renderStepActions(5)}
+            </StepContent>
+          </Step>
+          <Step style={{boxSizing: 'content-box'}}>
+            <StepLabel style={{fontSize:20}}>Care sunt datele de contact ale persoanei juridice?</StepLabel>
+            <StepContent>
+              <Address />
+              {this.renderStepActions(6)}
+            </StepContent>
+          </Step>
+        </Stepper>
+        {finished && (
+          <p style={{margin: '20px 0', textAlign: 'center'}}>
+            <a
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                this.setState({stepIndex: 0, finished: false});
+              }}
+            >
+              Click here
+            </a> to reset the example.
+          </p>
+        )}
+      </div>
+    );
   }
 }
-function RegistrationUI(props) {
-  return (
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <div>
-
-      <h1>Inregistrare</h1>
-      <h4>Ce fel de inregistrare vrei sa inregistrezi?</h4>
-      <RadioButtonGroup
-        name="registration_type"
-        //valueSelected={props.}
-        defaultSelected="regular">
-        <RadioButton
-          value="regular"
-          label="Intreprindere Sociala"
-          style={styles.radioButton}
-        />
-        <RadioButton
-          value="insertion"
-          label="Intreprindere Sociala de Insertie"
-          style={styles.radioButton}
-        />
-      </RadioButtonGroup>
-      <br /><br />
-      <h4>Cine depune cererea?</h4>
-      <Divider />
-      <p>Colectam date despre depunator (după caz, de către reprezentantul legal sau de către persoana împuternicită în acest scop)</p>
-
-      <TextField
-        hintText="CNP/CIF"
-        floatingLabelText="Introduceti codul CNP/CIF"
-      />
-      <TextField
-        hintText="Nume si Prenume"
-        floatingLabelText="Introduceti numele"
-      /><br /><br/>
-      <SelectField
-          floatingLabelText="Act de identitate"
-          // value={this.props.typeID}
-          // onChange={this.props.handleChange}
-          value={1}
-        >
-          <MenuItem value={1} primaryText="Buletin" />
-          <MenuItem value={2} primaryText="Pasaport" />
-      </SelectField>
-      <TextField
-        hintText="AA"
-        floatingLabelText="Serie"
-      />
-      <TextField
-        hintText="123456"
-        floatingLabelText="Numar"
-      />
-      <TextField
-        hintText="Organul emitent"
-        floatingLabelText="Eliberat de"
-      />
-      <DatePicker
-        hintText="Alegeti data eliberarii"
-        DateTimeFormat={DateTimeFormat}
-        okLabel="OK"
-        cancelLabel="Anulati"
-        locale="ro"
-        //value={this.state.controlledDate}
-        //onChange={this.handleChange}
-      />
-      <TextField
-        hintText="Director"
-        floatingLabelText="In calitate de"
-      />
-      <SelectField
-          floatingLabelText="Documente uploadate"
-          // value={this.props.typeID}
-          // onChange={this.props.handleChange}
-          value={1}
-        >
-          <MenuItem value={1} primaryText="Lista documente uploadate" />
-          <MenuItem value={2} primaryText="Statutul asociatiei" />
-      </SelectField>
-      <br /><br />
-      <h4>Care este entitatea juridica?</h4>
-      <Divider />
-      <p>Colectam date despre entitatea juridica ce vrea sa primeasca atestatul de intreprindere sociala</p>
-      <TextField
-        hintText="CUI/CIF"
-        floatingLabelText="Introduceti codul CUI/CIF"
-      />
-      <TextField
-        hintText="Nume"
-        floatingLabelText="Introduceti numele entitatii juridice"
-      />
-      <SelectField
-          floatingLabelText="Inregistrata la"
-          // value={this.props.typeID}
-          // onChange={this.props.handleChange}
-          value={1}
-        >
-          <MenuItem value={1} primaryText="Lista registrelor" />
-          <MenuItem value={2} primaryText="Registrul Comertului" />
-      </SelectField>
-      <TextField
-        hintText="J1234564"
-        floatingLabelText="Introduceti numarul de inregistrare"
-      />
-      <br /><br />
-      <h4>Care este categoria de intreprindere sociala?</h4>
-      <Divider />
-      <p>Carei categorii din cele prevăzute la art. 3 alin.(1) din Legea nr. 219/2015 privind economia socială ii apartine?</p>
-      <SelectField
-          floatingLabelText="Categoria"
-          autoWidth={true}
-          // value={this.props.typeID}
-          // onChange={this.props.handleChange}
-          value={3}
-        >
-          <MenuItem value={1} primaryText="Societati cooperative de gradul 1" />
-          <MenuItem value={2} primaryText="Cooperative de credit, Asociatii" />
-          <MenuItem value={3} primaryText="Fundatii" />
-          <MenuItem value={4} primaryText="Case de ajutor reciproc ale salariatilor" />
-          <MenuItem value={5} primaryText="Case de ajutor reciproc ale pensionarilor" />
-          <MenuItem value={6} primaryText="Societate agricola" />
-          <MenuItem value={7} primaryText="Federatii" />
-          <MenuItem value={8} primaryText="Uniuni de persoane juridice de tipul..." />
-          <MenuItem value={9} primaryText="Alte categorii de persoane juridice de tipul..." />
-      </SelectField>
-
-      <br /><br />
-      <h4>Sediul social si puncte de lucru?</h4>
-      <Divider />
-      <p>Adresa sediului social si posibilitatea de a adauga puncte de lucru.</p>
-      {/* <ComboBox placeholder={ 'Alege Judetul' }
-        onUpdate={ (event) => {
-          console.log(event.value);
-          console.log(event.identifier);
-          console.log(event.isMatchingOption);
-          console.log(event.isOptionSelection); }}
-          maxOptions={ 5 }>
-          {
-            districts.map((district, index) => {
-              return (
-                <Option value={ district.name }
-                identifier={ district.code }
-                key={ index }>
-                { district.name }
-                </Option>
-              );
-            })
-          }
-        </ComboBox> */}
-      <SelectField
-          floatingLabelText="Judet"
-          // value={this.props.typeID}
-          // onChange={this.props.handleChange}
-          value='AB'
-        >
-          <MenuItem value='AB' primaryText="Alba" />
-          <MenuItem value='SB' primaryText="Sibiu" />
-      </SelectField>
-      <SelectField
-          floatingLabelText="Localitate"
-          // value={this.props.typeID}
-          // onChange={this.props.handleChange}
-          value={1}
-        >
-          <MenuItem value={1} primaryText="Alba Iulia" />
-          <MenuItem value={2} primaryText="Sebes" />
-      </SelectField>
-      <br /><br />
-      <TextField
-        hintText="Str. ..."
-        floatingLabelText="Numele strazii"
-      />
-      <TextField
-        hintText="123"
-        floatingLabelText="Numar"
-      />
-      <TextField
-        hintText="123"
-        floatingLabelText="Bloc"
-      />
-      <TextField
-        hintText="123"
-        floatingLabelText="Scara"
-      />
-      <TextField
-        hintText="123"
-        floatingLabelText="Etaj"
-      />
-      <TextField
-        hintText="123"
-        floatingLabelText="Apartament"
-      />
-
-      {/*
-        Folosim o componenta de adresa si ai posibilitatea de a adauga pe langa adresa sediului social si puncte de lucru. Daca gasim baza de date cu judete si orase am putea face ComboBox Select with Hierarchical data: alegi judet si atunci faci callback la lista localitati.
-        * {etaj: string}
-        * {apartament: string}
-        * {cod postal: INT}
-        * {telefon: string}
-        * {fax: string}
-        * {email:string, email}
-      */}
-      </div>
-    </MuiThemeProvider>
-
-  );
-}
-RegistrationUI.propTypes = {
-  enterprises: PropTypes.object
-};
-function Registration(props) {
-  return (
-    <div style={styles.container}>
-      {
-        props.isLoading === true
-          ? <Loading />
-          : <RegistrationUI
-              enterprises={props.enterprises} />
-      }
-    </div>
-  );
-}
-Registration.propTypes = {
-  enterprises: PropTypes.object
-};
-export default Registration;

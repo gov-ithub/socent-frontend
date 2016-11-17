@@ -5,6 +5,7 @@ html, body {
 body {
   color: #333;
 }
+*:focus { outline: none; }
 .clearfix {
   clear: both;
 }

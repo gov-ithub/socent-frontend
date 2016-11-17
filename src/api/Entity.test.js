@@ -2,7 +2,7 @@
 
 import Entity from './Entity';
 
-import { APIEndpoints, APIVersions } from './Entity';
+import { APIEndpoints } from './Entity';
 
 const TestEntity = new Entity(
   'localhost',
@@ -11,7 +11,7 @@ const TestEntity = new Entity(
 
 function createXHRmock() {
   let open = jest.fn();
-  let send = jest.fn().mockImplementation(function(){   
+  let send = jest.fn().mockImplementation(function(){
     let onload = this.onload.bind(this);
     let onerror = this.onerror.bind(this);
   });
@@ -58,10 +58,10 @@ describe('Entity base API calls', () => {
   it ('returns a Promise', () => {
 	  createXHRmock();
 
-    expect(TestEntity._getID(APIEndpoints.enterprises, -1)).toBeTruthy();  
-    expect(TestEntity._get(APIEndpoints.enterprises, {'foo': 'bar'})).toBeTruthy();  
-    expect(TestEntity._deleteID(APIEndpoints.enterprises, -1)).toBeTruthy();  
-    expect(TestEntity._post(APIEndpoints.enterprises, {'foo' : 'bar'})).toBeTruthy();  
-    expect(TestEntity._update(APIEndpoints.enterprises, -1, {'foo' : 'bar'})).toBeTruthy();  
+    expect(TestEntity._getID(APIEndpoints.enterprises, -1)).toBeTruthy();
+    expect(TestEntity._get(APIEndpoints.enterprises, {'foo': 'bar'})).toBeTruthy();
+    expect(TestEntity._deleteID(APIEndpoints.enterprises, -1)).toBeTruthy();
+    expect(TestEntity._post(APIEndpoints.enterprises, {'foo' : 'bar'})).toBeTruthy();
+    expect(TestEntity._update(APIEndpoints.enterprises, -1, {'foo' : 'bar'})).toBeTruthy();
   });
 });

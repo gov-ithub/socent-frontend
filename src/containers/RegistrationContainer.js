@@ -30,8 +30,9 @@ export default class RegistrationContainer extends Component {
     return (
       <div>
         <Registration
-          isLoading={this.state.isLoading}
-          enterprises={this.state.enterprises} />
+          // isLoading={this.state.isLoading}
+          // enterprises={this.state.enterprises}
+        />
       </div>
     );
   }
