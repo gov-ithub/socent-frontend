@@ -6,7 +6,7 @@ type Props = {
   dataSource: Array<Object>,
   name: String,
   caenCode: String,
-  handleTextFieldChange: (e: Event) => void
+  handleTextFieldChange:(e: Event) => void
 }
 const dataSourceConfig = {
   text: 'description',

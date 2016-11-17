@@ -6,18 +6,17 @@ const dataSourceConfig = {
   value: 'id',
 };
 const Address = (props) => {
-
   return (
     <div>
       <AutoComplete
         style={{marginRight: '4%',width: '16%'}}
         textFieldStyle={{width: '100%'}}
-        listStyle={{width: 'inherit'}}
+        listStyle={{width: '100%'}}
         floatingLabelText="Judetul"
         filter={AutoComplete.noFilter}
         openOnFocus={true}
-        dataSourceConfig={dataSourceConfig}
         dataSource={dataSource}
+        dataSourceConfig={dataSourceConfig}
       />
       <TextField
         hintText="Sebes"
@@ -52,5 +51,6 @@ const Address = (props) => {
     </div>
   );
 }
-
+Address.propTypes = {
+};
 export default Address

@@ -16,8 +16,15 @@ import Domains from './06domains.js'
 import Address from './07address.js'
 
 import API from '../../api/API'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-
+import { lightBlue900 } from 'material-ui/styles/colors'
+const muiTheme = getMuiTheme({
+  palette: {
+    accent1Color: lightBlue900,
+  },
+});
 /**
  * Vertical steppers are designed for narrow screen sizes. They are ideal for mobile.
  *
@@ -117,6 +124,7 @@ export default class Registration extends Component {
     const {finished, stepIndex} = this.state;
 
     return (
+      <MuiThemeProvider muiTheme={muiTheme}>
       <div style={{maxWidth: '85%', minHeight: '80vh', margin: 'auto', paddingBottom:200}}>
         <h3>Inregistrare</h3>
         <Stepper activeStep={stepIndex} orientation="vertical">
@@ -197,6 +205,7 @@ export default class Registration extends Component {
           </p>
         )}
       </div>
+      </MuiThemeProvider>
     );
   }
 }
