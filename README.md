@@ -61,6 +61,8 @@ Pentru Auth0 aveti nevoie de cont pe Auth0 și un Single Page client pentru a te
 - `npm run build`: Pregătește aplicația pentru deployment (include minification, bundling, etc)
 - `npm run eject`: Elimină dependența de [create-react-app](https://github.com/facebookincubator/create-react-app/). Poate va fi necesar, dar până atunci please don't touch.
 
+Un ghid foarte succint pentru dezvoltarea pe un mediu Windows il gasesti [aici](windows-dev.md) 
+
 ## Pull Request cheat-sheet
 - Ai un summary complet? Trebuie să fie clar: ce schimbare aduce diff-ul, cum ai testat, și în cazuri unde se fac schimbări majore, dacă e cazul, avem un revert plan?
 - Ai scris teste pentru codul nou adăugat/modificat?
