@@ -69,7 +69,7 @@ class App extends Component {
       })
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-      <div>
+        <div>
           <AppBar
             onLeftIconButtonTouchTap={this.state.isLoggedIn ? () => this.setState({
               open: !this.state.open
@@ -78,17 +78,16 @@ class App extends Component {
             style={{backgroundColor: '#004990', position: 'fixed'}}
             iconClassNameLeft={!this.state.isLoggedIn ? 'hidden' : null }
           />
-        <div style={!this.state.isLoggedIn ? styles.containerPublic : styles.containerPrivate}>
-          <div>
-            <Sidebar
-              open={this.state.open}/>
+          <div style={!this.state.isLoggedIn ? styles.containerPublic : styles.containerPrivate}>
+            <div>
+              {this.state.open ? <Sidebar /> : <Sidebar minified />}
             </div>
-          <div>
-            {children}
+            <div>
+              {children}
+            </div>
           </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
       </MuiThemeProvider>
     );
   }

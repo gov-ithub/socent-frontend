@@ -3,8 +3,8 @@ import Loading from '../Loading'
 const styles = {
   container: {
     display: "block",
-    minHeight: "calc(100vh - 50px)",
-    paddingTop: 90
+    minHeight: "calc(100vh - 90px)",
+    paddingTop: "90px"
   }
 }
 function HomeUI(props) {

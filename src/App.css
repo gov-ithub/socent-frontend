@@ -23,7 +23,7 @@ h1 {
   font-weight: 300;
 }
 .logo{
-  margin-left: calc(10vw - 140px);
+  margin-left: 5vw;
 }
 .avatar{
   width: 30px;

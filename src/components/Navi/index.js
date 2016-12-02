@@ -5,7 +5,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 export default class Navi extends Component {
-  
+
   render() {
     return (
       <StickyContainer>

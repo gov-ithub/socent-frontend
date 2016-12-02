@@ -8,7 +8,17 @@ import ActionHelp from "material-ui/svg-icons/action/help";
 import SocialPeople from "material-ui/svg-icons/social/people";
 
 const style = {
-  navi: {display: 'flex', flexDirection: 'column', height: 'calc(100% - 52px)', paddingTop: 0, paddingBottom: 0}
+  navi: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: 'calc(100% - 52px)',
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  listItem: {
+    height: '48px',
+    color: '#004990'
+  }
 }
 
 let SelectableList = makeSelectable(List);
@@ -50,38 +60,39 @@ SelectableList = wrapState(SelectableList)
 
 const Sidebar = (props) => (
   <Drawer
-    containerStyle={{height: 'calc(100% - 64px)', top: 64}}
-    open={props.open}>
+    containerStyle={{height: 'calc(100% - 64px)', top: 64, overflowX: 'hidden'}}
+    width={props.minified ? '80px' : null}
+    >
     <Card>
       <CardHeader
-        // title={this.props.profile.name}
-        subtitle='Bine ai venit'
-        // avatar={this.props.profile.picture}
+        // title={props.profile.name}
+        subtitle={!props.minified ? "Bine ai venit" : null}
+        // avatar={props.profile.picture}
       />
     </Card>
 
     <SelectableList defaultValue="dashboard" style={style.navi}>
       <ListItem
         value="dashboard"
-        primaryText="Dashboard"
+        primaryText={!props.minified ? "Dashboard" : null}
         leftIcon={<ActionHome color='#004990'/>}
-        style={{color: '#004990'}}
+        style={style.listItem}
         containerElement={<Link to="/admin" />} />
       <Divider />
       <ListItem
         value="intreprinderi"
-        primaryText="Intreprinderi"
+        primaryText={!props.minified ? "Intreprinderi" : null}
         leftIcon={<ActionStore color='#004990'/>}
-        style={{color: '#004990'}}
+        style={style.listItem}
         containerElement={<Link to="/admin/intreprinderi" />}
         initiallyOpen={false} />
       <Divider />
       <ListItem
         value="utilizatori"
-        primaryText="Utilizatori"
+        primaryText={!props.minified ? "Utilizatori" : null}
         leftIcon={<SocialPeople color='#004990'/>}
         initiallyOpen={false}
-        style={{color: '#004990', borderBottom:'1px solid #E0E0E0'}}
+        style={style.listItem}
         primaryTogglesNestedList={true}
         nestedListStyle={{paddingTop:0, paddingBottom:0}}
         nestedItems={[
@@ -90,7 +101,7 @@ const Sidebar = (props) => (
             key={1}
             insetChildren={true}
             primaryText="Lista"
-            style={{color: '#004990'}}
+            style={style.listItem}
             containerElement={<Link to="/admin/utilizatori" />}/>
           ]}
         />
@@ -99,14 +110,14 @@ const Sidebar = (props) => (
       <Divider style={{flexGrow:'1', backgroundColor:'white'}}/>
       <ListItem
         value="profil"
-        primaryText="Profil"
+        primaryText={!props.minified ? "Profil" : null}
         leftIcon={<ActionSettings color='#004990' />}
-        style={{color: '#004990'}}
+        style={style.listItem}
         containerElement={<Link to="/admin/profil" />} />
       <ListItem
         value="ajutor"
-        primaryText="Ajutor"
-        style={{color: '#004990'}}
+        primaryText={!props.minified ? "Ajutor" : null}
+        style={style.listItem}
         leftIcon={<ActionHelp color='#004990'/>}
         containerElement={<Link to="/admin/ajutor" />} />
     </SelectableList>
