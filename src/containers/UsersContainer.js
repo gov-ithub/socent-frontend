@@ -1,27 +1,19 @@
-import React, {PropTypes, Component} from 'react'
+import React, {PropTypes, Component} from "react";
 
-import Users from '../components/Users'
+import Users from "../components/Users";
 
 export default class UsersContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoading: false,
-    };
+    this.state = { isLoading: false };
   }
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
   render() {
     return (
       <div>
-        <Users
-          isLoading={this.state.isLoading}
-           />
+        <Users isLoading={this.state.isLoading} />
       </div>
     );
   }
 }
-UsersContainer.contextTypes = {
-  router: PropTypes.object.isRequired,
-};
+UsersContainer.contextTypes = { router: PropTypes.object.isRequired };
