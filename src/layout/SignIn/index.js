@@ -9,7 +9,10 @@ const SignIn = () => {
     e.preventDefault();
     APIInstance.getLogin().loginUser(username.value, password.value)
     .then(
-      jwt => console.log("App::ctor::then", jwt)
+      jwt => {
+        console.log("App::ctor::then", jwt)
+        localStorage.setItem('auth', JSON.stringify(jwt));
+      }
     ).catch(
       err => console.log("App::ctor::catch", err)
     );

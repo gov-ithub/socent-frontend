@@ -35,9 +35,11 @@ class App extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { open: true, isLoggedIn: true };
-
-
+    this.state = {
+      open: true,
+      isLoggedIn: true,
+      auth: JSON.parse(localStorage.getItem('auth'))
+    };
   }
 
   handleToggleSidebar() {

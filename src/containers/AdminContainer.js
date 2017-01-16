@@ -6,7 +6,7 @@ export default class AdminContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // profile: this.props.auth.getProfile(),
+      auth: JSON.parse(localStorage.getItem('auth')),
       isLoading: true,
       enterprises: [],
       modalState: false,

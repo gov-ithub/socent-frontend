@@ -15,7 +15,7 @@ export default class HomeContainer extends Component {
   render() {
     return (
       <div>
-        <Home
+        <Home isLoading={false}
            />
       </div>
     );
