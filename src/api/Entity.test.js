@@ -5,6 +5,7 @@ import Entity from './Entity';
 const TestEntity = new Entity(
   'localhost',
   'v1',
+  '',
 );
 
 function createXHRmock() {
