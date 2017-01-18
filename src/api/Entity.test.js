@@ -2,8 +2,6 @@
 
 import Entity from './Entity';
 
-import { APIEndpoints } from './Entity';
-
 const TestEntity = new Entity(
   'localhost',
   'v1',
@@ -34,7 +32,7 @@ describe('Entity URI manipulation', () => {
       node_env: string,
     ): string {
       process.env.NODE_ENV = node_env;
-      return TestEntity._buildEndpoint(APIEndpoints.enterprises);
+      return TestEntity._buildEndpoint("enterprises");
     }
 
     const dev_endpoint = getEndpoint("development");
@@ -58,10 +56,10 @@ describe('Entity base API calls', () => {
   it ('returns a Promise', () => {
 	  createXHRmock();
 
-    expect(TestEntity._getID(APIEndpoints.enterprises, -1)).toBeTruthy();
-    expect(TestEntity._get(APIEndpoints.enterprises, {'foo': 'bar'})).toBeTruthy();
-    expect(TestEntity._deleteID(APIEndpoints.enterprises, -1)).toBeTruthy();
-    expect(TestEntity._post(APIEndpoints.enterprises, {'foo' : 'bar'})).toBeTruthy();
-    expect(TestEntity._update(APIEndpoints.enterprises, -1, {'foo' : 'bar'})).toBeTruthy();
+    expect(TestEntity._getID("enterprises", -1)).toBeTruthy();
+    expect(TestEntity._get("enterprises", {'foo': 'bar'})).toBeTruthy();
+    expect(TestEntity._deleteID("enterprises", -1)).toBeTruthy();
+    expect(TestEntity._post("enterprises", {'foo' : 'bar'})).toBeTruthy();
+    expect(TestEntity._update("enterprises", -1, {'foo' : 'bar'})).toBeTruthy();
   });
 });
