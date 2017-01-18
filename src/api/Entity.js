@@ -1,23 +1,14 @@
 // @flow
 
 import axios from 'axios';
-/*
-export const APIEndpoints = {
-  enterprises: "enterprises",
-  public: "public",
-  list: "list",
-  industry_classifications: "industry-classifications",
-  social_intervention_domains: "social-intervention-domains"
-};
-export type APIEndpoint = $Keys<typeof APIEndpoints>;
-*/
 
 export type APIEndpoint = 
   "enterprises" |
   "public" |
   "list" |
   "industry-classifications" |
-  "social-intervention-domains";
+  "social-intervention-domains" |
+  "login";
 
 export const APIVersions = {
   v1: "v1",
@@ -26,19 +17,36 @@ export type APIVersion = $Keys<typeof APIVersions>;
 
 export type APIPayload = { [key: string]: string };
 
+type APIHeaderConfig = {
+  'Authorization': string,
+}
+
+type APIRequestConfig = {
+  headers: APIHeaderConfig,
+};
+
 export default class Entity {
   _baseURI: string;
   _version: APIVersion;
+  _token: string;
+  _requestConfig: APIRequestConfig
 
   constructor(
     baseURI: string,
     version: APIVersion,
+    token: string,
   ) {
     this._baseURI = baseURI;
     this._version = version;
+    this._token = token;
+    this._requestConfig = {
+      headers: {
+        'Authorization': 'Bearer ' + this._token,
+      }
+    };
   }
 
-  _buildEndpoint(
+  buildEndpoint(
     endpoint: APIEndpoint,
   ): string {
       return this._baseURI + "/api/" + this._version + "/" + endpoint;
@@ -63,7 +71,10 @@ export default class Entity {
     endpoint: APIEndpoint,
     id: number,
   ): Promise<Object> {
-    return axios.get(this._buildEndpoint(endpoint) + '/' + id);
+    return axios.get(
+      this.buildEndpoint(endpoint) + '/' + id,
+      this._requestConfig,
+    );
   }
 
   _get(
@@ -71,7 +82,8 @@ export default class Entity {
     params: APIPayload,
   ): Promise<Object> {
     return axios.get(
-      this._buildEndpoint(endpoint) + '?' + this._buildQueryString(params),
+      this.buildEndpoint(endpoint) + '?' + this._buildQueryString(params),
+      this._requestConfig,
     );
   }
 
@@ -79,7 +91,10 @@ export default class Entity {
     endpoint: APIEndpoint,
     id: number,
   ): Promise<Object> {
-    return axios.delete(this._buildEndpoint(endpoint) + '/' + id);
+    return axios.delete(
+      this.buildEndpoint(endpoint) + '/' + id,
+      this._requestConfig,
+    );
   }
 
   _post(
@@ -87,8 +102,9 @@ export default class Entity {
     payload: APIPayload,
   ): Promise<Object> {
     return axios.post(
-      this._buildEndpoint(endpoint),
+      this.buildEndpoint(endpoint),
       payload,
+      this._requestConfig,
     );
   }
 
@@ -99,8 +115,9 @@ export default class Entity {
     payload: APIPayload,
   ): Promise<Object> {
     return axios.patch(
-      this._buildEndpoint(endpoint) + '/' + id,
+      this.buildEndpoint(endpoint) + '/' + id,
       payload,
+      this._requestConfig,
     );
   }
 }

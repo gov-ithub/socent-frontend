@@ -4,16 +4,18 @@ import API from "../../api/API";
 const SignIn = () => {
   let username;
   let password;
-  const APIInstance = new API();
   const handleSignIn = e => {
     e.preventDefault();
-    APIInstance.getLogin().loginUser(username.value, password.value)
-    .then(
+    const api = new API();
+    api.login(
+      {email: username.value, password: password.value}
+    ).then(
       jwt => console.log("App::ctor::then", jwt)
     ).catch(
       err => console.log("App::ctor::catch", err)
     );
   };
+
   return (
     <form onSubmit={handleSignIn}>
       <input type="text" name="username" ref={input => username = input} />
