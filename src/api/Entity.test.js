@@ -25,23 +25,6 @@ function createXHRmock() {
 }
 
 describe('Entity URI manipulation', () => {
-  it ('uses different endpoints for prod and dev', () => {
-    const original_env = process.env.NODE_ENV;
-
-    function getEndpoint(
-      node_env: string,
-    ): string {
-      process.env.NODE_ENV = node_env;
-      return TestEntity._buildEndpoint("enterprises");
-    }
-
-    const dev_endpoint = getEndpoint("development");
-    const prod_endpoint = getEndpoint("production");
-    expect(dev_endpoint).not.toBe(prod_endpoint);
-
-    process.env.NODE_ENV = original_env;
-  });
-
   it ('builds correct query strings' , () => {
     const query_string = TestEntity._buildQueryString({
       'foo': 'bar',
