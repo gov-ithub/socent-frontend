@@ -1,7 +1,7 @@
 // @flow
 
 import axios from 'axios';
-
+/*
 export const APIEndpoints = {
   enterprises: "enterprises",
   public: "public",
@@ -10,6 +10,14 @@ export const APIEndpoints = {
   social_intervention_domains: "social-intervention-domains"
 };
 export type APIEndpoint = $Keys<typeof APIEndpoints>;
+*/
+
+export type APIEndpoint = 
+  "enterprises" |
+  "public" |
+  "list" |
+  "industry-classifications" |
+  "social-intervention-domains";
 
 export const APIVersions = {
   v1: "v1",

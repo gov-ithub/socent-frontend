@@ -1,6 +1,6 @@
 // @flow
 
-import Entity, {APIEndpoints} from './Entity';
+import Entity from './Entity';
 
 import type {
   APIPayload,
@@ -10,12 +10,12 @@ export default class Domains extends Entity {
   list(
     params: APIPayload,
   ): Promise<Object> {
-    return this._get(APIEndpoints.social_intervention_domains, params);
+    return this._get("social-intervention-domains", params);
   }
 
   getByID(
     id: number,
   ): Promise<Object> {
-    return this._getID(APIEndpoints.social_intervention_domains, id);
+    return this._getID("social-intervention-domains", id);
   }
 }
