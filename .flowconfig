@@ -1,3 +1,6 @@
 [ignore]
 .*/node_modules/fbjs/.*
 .*/node_modules/reqwest/.*
+
+[libs]
+/flow-typed/
