@@ -1,7 +1,5 @@
-
-
 import API from './API';
-//import Enterprise from './Enterprise';
+import '../jest/localstorage';
 
 const TestAPI = new API(
   'localhost',
