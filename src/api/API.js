@@ -4,8 +4,10 @@ import Enterprise from './Enterprise';
 import Caens from './Caens';
 import Domains from './Domains';
 import Entity, { APIVersions } from './Entity';
+import {isTokenExpired} from './utils/jwt';
 
 import axios from 'axios';
+import decode from 'jwt-decode';
 import {browserHistory} from "react-router";
 
 import type { APIVersion } from './Entity';
@@ -52,7 +54,8 @@ export default class API {
   }
 
   isLoggedIn(): boolean {
-    return !!this._getToken();
+    const token = this._getToken();
+    return !!token && !isTokenExpired(token);
   }
 
   login(user: UserCredentials): Promise<Object> {
@@ -83,6 +86,11 @@ export default class API {
 
   logout(): void {
     this._clearToken();
+  }
+
+  getUsername(): string {
+    const decoded_token = decode(this._token);
+    return decoded_token.user_name ? decoded_token.user_name : '';  
   }
 
   getEnterprise(): Enterprise {

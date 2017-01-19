@@ -1,6 +1,8 @@
-import React, {PropTypes} from "react";
+import React from "react";
 import {browserHistory} from "react-router";
 import API from "../api/API";
+
+const api = new API();
 
 export default function requiresAuth(Component) {
   return class AuthenticatedComponent extends React.Component {
@@ -13,7 +15,6 @@ export default function requiresAuth(Component) {
     }
 
     _checkAndRedirect() {
-      let api = new API();
       if (!api.isLoggedIn()) {
         browserHistory.push("/login");
       }
@@ -22,7 +23,7 @@ export default function requiresAuth(Component) {
     render() {
       return (
         <div className="authenticated">
-          {<Component {...this.props} />}
+          {<Component {...this.props} user={api.getUsername()} />}
         </div>
       );
     }
