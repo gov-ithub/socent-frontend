@@ -7,6 +7,9 @@ import ActionSettings from "material-ui/svg-icons/action/settings";
 import ActionHelp from "material-ui/svg-icons/action/help";
 import SocialPeople from "material-ui/svg-icons/social/people";
 
+import API from '../../api/API';
+const api = new API();
+
 const style = {
   navi: {
     display: 'flex',
@@ -65,7 +68,7 @@ const Sidebar = (props) => (
     >
     <Card>
       <CardHeader
-        // title={props.profile.name}
+        title={api.getUsername()}
         subtitle={!props.minified ? "Bine ai venit" : null}
         // avatar={props.profile.picture}
       />
