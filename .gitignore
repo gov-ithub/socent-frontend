@@ -5,7 +5,7 @@ node_modules
 
 # testing
 coverage
-jest
+/jest/
 
 # production
 build
