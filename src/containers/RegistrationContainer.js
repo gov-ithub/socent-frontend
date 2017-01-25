@@ -4,6 +4,8 @@ import Registration from '../components/Registration'
 import axios from 'axios'
 import API from '../api/API'
 
+import Logger from 'js-logger';
+
 export default class RegistrationContainer extends Component {
   constructor(props) {
     super(props);
@@ -54,10 +56,10 @@ export default class RegistrationContainer extends Component {
 
   addCaenComponent() {
     const { secondaryIndustryClassifications } = this.state.enterprise;
-    console.log(secondaryIndustryClassifications);
+    Logger.info(secondaryIndustryClassifications);
     const newCaenSecondary = secondaryIndustryClassifications.concat(null);
     const newCaenSecObject = {secondaryIndustryClassifications: newCaenSecondary}
-    console.log(newCaenSecObject);
+    Logger.info(newCaenSecObject);
     this.setState({
       enterprise: {...this.state.enterprise, ...newCaenSecObject}
     });
