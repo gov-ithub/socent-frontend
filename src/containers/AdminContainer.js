@@ -2,6 +2,10 @@ import React, {PropTypes, Component} from 'react'
 import API from '../api/API.js'
 import Admin from '../components/Admin'
 
+import Logger from 'js-logger';
+
+Logger.useDefaults();
+
 export default class AdminContainer extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +45,7 @@ export default class AdminContainer extends Component {
         })
       })
       .catch(function (error) {
-        console.log(error);
+        Logger.info(error);
       })
   }
 

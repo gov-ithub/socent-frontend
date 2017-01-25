@@ -1,5 +1,8 @@
 import React from "react";
 import API from "../../api/API";
+import Logger from "js-logger";
+
+Logger.useDefaults();
 
 const SignIn = () => {
   let username;
@@ -10,9 +13,9 @@ const SignIn = () => {
     api.login(
       {email: username.value, password: password.value}
     ).then(
-      jwt => console.log("App::ctor::then", jwt)
+      jwt => Logger.info("App::ctor::then", jwt)
     ).catch(
-      err => console.log("App::ctor::catch", err)
+      err => Logger.info("App::ctor::catch", err)
     );
   };
 

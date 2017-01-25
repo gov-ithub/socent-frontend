@@ -12,6 +12,10 @@ import {browserHistory} from "react-router";
 
 import type { APIVersion } from './Entity';
 
+import Logger from 'js-logger';
+
+Logger.useDefaults();
+
 type UserCredentials = {
   email: string,
   password: string,
@@ -59,7 +63,7 @@ export default class API {
   }
 
   login(user: UserCredentials): Promise<Object> {
-    console.log("loginUser:", user.email, user.password);
+    Logger.info("loginUser:", user.email, user.password);
     let ent = new Entity(this._baseURI, this._version, this._token);
 
     return new Promise((resolve, reject) => {
@@ -70,14 +74,14 @@ export default class API {
         .then(resp => {
           // {authorizationToken: {token: ..., exp: <expiry-8601>, user_name: ...}}
           var json = resp.data.authorizationToken;
-          console.log("loginUser: ", resp, json);
-          console.log("JWT: ", json.token);
+          Logger.info("loginUser: ", resp, json);
+          Logger.info("JWT: ", json.token);
           this._setToken(json.token);
           browserHistory.push("/admin");
           resolve(json);
         })
         .catch(err => {
-          console.log("loginUser: error:", err);
+          Logger.info("loginUser: error:", err);
           reject(err);
         });
       }
